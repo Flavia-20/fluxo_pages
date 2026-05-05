@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 import 'login_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MeuApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MeuApp extends StatelessWidget {
+  const MeuApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.lightBlueAccent),
       home: const LoginPage(),
     );
-    
   }
 }
-
