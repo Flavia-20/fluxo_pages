@@ -32,23 +32,54 @@ class PerfilPage extends StatelessWidget {
               style: OutlinedButton.styleFrom(minimumSize: const Size(200, 45)),
             ),
             const SizedBox(height: 15),
+          
             ElevatedButton.icon(
-              onPressed: () => Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-                (route) => false,
-              ),
-              icon: const Icon(Icons.logout),
-              label: const Text('Sair do sistema'),
+               onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text("Confirmar saída"),
+                      content: const Text("Deseja realmente sair do sistema?"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context); // Fecha o dialog
+                          },
+                          child: const Text("Cancelar"),
+                        ),
+
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (context) => const LoginPage()
+                            ),
+                            (route) => false,
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                        ),
+                        child: const Text("Sair"),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            icon: const Icon(Icons.logout),
+            label: const Text('Sair do sistema'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
                 minimumSize: const Size(200, 45),
               ),
             ),
-          ],
-        ),
-      ),
+          ]
+        )
+      )
     );
   }
 }
